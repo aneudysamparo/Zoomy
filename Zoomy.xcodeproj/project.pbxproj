@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0032E7612B7D6944009A4FB1 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0032E7602B7D6944009A4FB1 /* PageModel.swift */; };
 		0032E7632B7D698D009A4FB1 /* PageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0032E7622B7D698D009A4FB1 /* PageData.swift */; };
+		0032E7802B7E4713009A4FB1 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0032E77F2B7E4713009A4FB1 /* Haptics.swift */; };
 		00579AE02B7D47A00055578F /* ZoomyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00579ADF2B7D47A00055578F /* ZoomyApp.swift */; };
 		00579AE22B7D47A00055578F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00579AE12B7D47A00055578F /* ContentView.swift */; };
 		00579AE42B7D47A10055578F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00579AE32B7D47A10055578F /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		0032E7602B7D6944009A4FB1 /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 		0032E7622B7D698D009A4FB1 /* PageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageData.swift; sourceTree = "<group>"; };
+		0032E77F2B7E4713009A4FB1 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		00579ADC2B7D47A00055578F /* Zoomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zoomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00579ADF2B7D47A00055578F /* ZoomyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomyApp.swift; sourceTree = "<group>"; };
 		00579AE12B7D47A00055578F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0032E77E2B7E46FF009A4FB1 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0032E77F2B7E4713009A4FB1 /* Haptics.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		00579AD32B7D47A00055578F = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +69,7 @@
 		00579ADE2B7D47A00055578F /* Zoomy */ = {
 			isa = PBXGroup;
 			children = (
+				0032E77E2B7E46FF009A4FB1 /* Utility */,
 				00579AF02B7D4AEA0055578F /* Data */,
 				00579AEF2B7D4AE30055578F /* Model */,
 				00579AEE2B7D4ADB0055578F /* View */,
@@ -181,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0032E7802B7E4713009A4FB1 /* Haptics.swift in Sources */,
 				00579AF42B7D5BD60055578F /* ControlImageView.swift in Sources */,
 				0032E7612B7D6944009A4FB1 /* PageModel.swift in Sources */,
 				00579AE22B7D47A00055578F /* ContentView.swift in Sources */,

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     // MARK: - PROPERTY
+    private var animationDuration: TimeInterval = 0.5
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
     @State private var imageOffset: CGSize = .zero
@@ -60,13 +61,15 @@ struct ContentView: View {
                     .gesture(
                         DragGesture()
                             .onChanged { value in
-                                withAnimation(.linear(duration: 1)) {
+                                withAnimation(.linear(duration: animationDuration)) {
                                     imageOffset = value.translation
                                 }
                             }
                             .onEnded { _ in
-                                if imageScale <= 1 {
-                                    resetImageState()
+                                withAnimation(.linear(duration: animationDuration)) {
+                                    if imageScale <= 1 {
+                                        resetImageState()
+                                    }
                                 }
                             }
                     )
@@ -74,7 +77,7 @@ struct ContentView: View {
                     .gesture(
                         MagnificationGesture()
                             .onChanged {value in
-                                withAnimation(.linear(duration: 1)) {
+                                withAnimation(.linear(duration: animationDuration)) {
                                     if imageScale >= 1 && imageScale <= 5 {
                                         imageScale = value
                                     } else if imageScale > 5 {
@@ -83,10 +86,12 @@ struct ContentView: View {
                                 }
                             }
                             .onEnded { _ in
-                                if imageScale > 5 {
-                                    imageScale = 5
-                                } else if imageScale <= 1 {
-                                    resetImageState()
+                                withAnimation(.linear(duration: animationDuration)) {
+                                    if imageScale > 5 {
+                                        imageScale = 5
+                                    } else if imageScale <= 1 {
+                                        resetImageState()
+                                    }
                                 }
                             }
                     )
@@ -95,7 +100,7 @@ struct ContentView: View {
             .navigationTitle("Zoomy")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
-                withAnimation(.linear(duration: 1)) {
+                withAnimation(.linear(duration: animationDuration)) {
                     isAnimating = true
                 }
             })
@@ -111,6 +116,11 @@ struct ContentView: View {
                     HStack {
                         // SCALE DOWN
                         Button {
+                            if imageScale == 1 && imageOffset == .zero {
+                                return
+                            }
+                            
+                            Haptics.shared.tap()
                             withAnimation(.spring()) {
                                 if imageScale > 1 {
                                     imageScale -= 1
@@ -126,6 +136,12 @@ struct ContentView: View {
                         
                         // RESET
                         Button {
+                            if imageScale == 1 && imageOffset == .zero {
+                                return
+                            }
+                            
+                            Haptics.shared.tap()
+                            
                             resetImageState()
                         } label: {
                             ControlImageView(icon: "arrow.up.left.and.down.right.magnifyingglass")
@@ -133,6 +149,11 @@ struct ContentView: View {
                         
                         // SCALE UP
                         Button {
+                            if imageScale == 1 && imageOffset == .zero {
+                                return
+                            }
+                            
+                            Haptics.shared.tap()
                             withAnimation(.spring()) {
                                 if imageScale < 5 {
                                     imageScale += 1
@@ -165,7 +186,8 @@ struct ContentView: View {
                         .padding(8)
                         .foregroundStyle(.secondary)
                         .onTapGesture {
-                            withAnimation(.easeOut) {
+                            Haptics.shared.tap()
+                            withAnimation(.easeOut(duration: animationDuration)) {
                                 isDrawerOpen.toggle()
                             }
                         }
@@ -177,8 +199,9 @@ struct ContentView: View {
                             .frame(width: 80)
                             .cornerRadius(8)
                             .shadow(radius: 4)
-                            .animation(.easeOut(duration: 0.5), value: isDrawerOpen)
+                            .animation(.easeOut(duration: animationDuration), value: isDrawerOpen)
                             .onTapGesture(perform: {
+                                Haptics.shared.tap()
                                 isAnimating = true
                                 pageIndex = page.id
                             })
